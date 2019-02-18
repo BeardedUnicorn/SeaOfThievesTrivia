@@ -12,26 +12,125 @@ const groups = [
 
 const answers = [
     {
-        description: "cat-placeholder",
+        description: "ancient-spire-01",
         group_id: 0,
-        source: "https://loremflickr.com/200/300/cat"
+        source: '../clips/ancient-spire/2019-02-16_16-59-57-edited-full.mp4'
     },
     {
-        description: "cat-placeholder",
+        description: "ancient-spire-02",
         group_id: 0,
-        source: "https://loremflickr.com/200/300/cat"
+        source: '../clips/ancient-spire/2019-02-16_17-04-57-edited-full.mp4'
     },
     {
-        description: "dog-placeholder",
+        description: "ancient-spire-03",
+        group_id: 0,
+        source: '../clips/ancient-spire/2019-02-16_17-13-57-edited-full.mp4'
+    },
+    {
+        description: "ancient-spire-04",
+        group_id: 0,
+        source: '../clips/ancient-spire/2019-02-16_17-19-57-edited-full.mp4'
+    },
+    {
+        description: "dagger-tooth-01",
         group_id: 1,
-        source: "https://loremflickr.com/200/300/dog"
+        source: '../clips/dagger-tooth/2019-02-16_17-36-22-edited-full.mp4'
     },
     {
-        description: "snake-placeholder",
-        group_id: 2,
-        source: "https://loremflickr.com/200/300/snake"
+        description: "dagger-tooth-02",
+        group_id: 1,
+        source: '../clips/dagger-tooth/2019-02-16_17-42-22-edited-full.mp4'
     },
-
+    {
+        description: "dagger-tooth-03",
+        group_id: 1,
+        source: '../clips/dagger-tooth/2019-02-16_17-48-22-edited-full.mp4'
+    },
+    {
+        description: "dagger-tooth-04",
+        group_id: 1,
+        source: '../clips/dagger-tooth/2019-02-16_17-55-22-edited-full.mp4'
+    },
+    {
+        description: "galleons-grave-01",
+        group_id: 2,
+        source: '../clips/galleons-grave/2019-02-16_15-19-58-edited-full.mp4'
+    },
+    {
+        description: "galleons-grave-02",
+        group_id: 2,
+        source: '../clips/galleons-grave/2019-02-16_15-24-58-edited-full.mp4'
+    },
+    {
+        description: "galleons-grave-03",
+        group_id: 2,
+        source: '../clips/galleons-grave/2019-02-16_15-30-58-edited-full.mp4'
+    },
+    {
+        description: "galleons-grave-04",
+        group_id: 2,
+        source: '../clips/galleons-grave/2019-02-16_15-38-58-edited-full.mp4'
+    },
+    {
+        description: "golden-sands-01",
+        group_id: 3,
+        source: '../clips/golden-sands/2019-02-17_12-02-44-edited-full.mp4'
+    },
+    {
+        description: "golden-sands-02",
+        group_id: 3,
+        source: '../clips/golden-sands/2019-02-17_12-07-45-edited-full.mp4'
+    },
+    {
+        description: "golden-sands-03",
+        group_id: 3,
+        source: '../clips/golden-sands/2019-02-17_12-14-45-edited-full.mp4'
+    },
+    {
+        description: "golden-sands-04",
+        group_id: 3,
+        source: '../clips/golden-sands/2019-02-17_12-22-45-edited-full.mp4'
+    },
+    {
+        description: "plunder-01",
+        group_id: 4,
+        source: '../clips/plunder/2019-02-16_14-07-58-edited-full.mp4'
+    },
+    {
+        description: "plunder-02",
+        group_id: 4,
+        source: '../clips/plunder/2019-02-16_14-12-58-edited-full.mp4'
+    },
+    {
+        description: "plunder-03",
+        group_id: 4,
+        source: '../clips/plunder/2019-02-16_14-18-58-edited-full.mp4'
+    },
+    {
+        description: "plunder-04",
+        group_id: 4,
+        source: '../clips/plunder/2019-02-16_14-25-58-edited-full.mp4'
+    },
+    {
+        description: "sanctuary-01",
+        group_id: 5,
+        source: '../clips/sanctuary/2019-02-16_18-53-55-edited-full.mp4'
+    },
+    {
+        description: "sanctuary-02",
+        group_id: 5,
+        source: '../clips/sanctuary/2019-02-16_18-58-55-edited-full.mp4'
+    },
+    {
+        description: "sanctuary-03",
+        group_id: 5,
+        source: '../clips/sanctuary/2019-02-16_19-04-56-edited-full.mp4'
+    },
+    {
+        description: "sanctuary-04",
+        group_id: 5,
+        source: '../clips/sanctuary/2019-02-16_19-10-56-edited-full.mp4'
+    }
 ];
 
 class Quiz extends Component {
@@ -44,6 +143,7 @@ class Quiz extends Component {
                 total: 0
             }
         };
+        console.log(this.state);
         this.checkAnswer = this.checkAnswer.bind(this);
     }
 
@@ -80,7 +180,7 @@ class Quiz extends Component {
         if (!question.choices.includes(question.answer.group_id)) {
             question.choices[this.getRandomInt(question.choices.length)] = question.answer.group_id;
         }
-
+        console.log(question);
         return question;
     };
 
@@ -93,6 +193,7 @@ class Quiz extends Component {
         newState.score.total = newState.score.total + 1;
         newState.currentQuestion = this.createQuestion();
         this.setState(newState);
+        console.log(this.state);
     };
 
     render() {
@@ -100,7 +201,9 @@ class Quiz extends Component {
             <div className="Quiz">
                 <div className="score">{this.state.score.correct} / {this.state.score.total}</div>
                 <div className="question">
-                    <img src={this.state.currentQuestion.answer.source} alt="placeholder"/>
+                    <video src={this.state.currentQuestion.answer.source} type="video/mp4" autoPlay loop>
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
                 <div className="answers">
                     <button type="button" onClick={(event) => this.checkAnswer(event, this.state.currentQuestion.choices[0])}>{groups[this.state.currentQuestion.choices[0]]}</button>
